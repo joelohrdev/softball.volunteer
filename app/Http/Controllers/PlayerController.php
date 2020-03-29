@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Date;
-use Illuminate\Http\Request;
+use App\Player;
 use Illuminate\Support\Facades\Auth;
-use Symfony\Component\Console\Input\Input;
+use Illuminate\Http\Request;
 
-class DateController extends Controller
+class PlayerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +25,7 @@ class DateController extends Controller
      */
     public function create()
     {
-        return view('date.create');
+        return view('player.create');
     }
 
     /**
@@ -37,16 +36,25 @@ class DateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $player = new Player([
+           'user_id' => Auth::user()->id,
+           'name' => $request->get('name'),
+           'email' => $request->get('email'),
+           'coach_name' => $request->get('coach_name')
+        ]);
+
+        $player->save();
+
+        return redirect('/home');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Date  $date
+     * @param  \App\Player  $player
      * @return \Illuminate\Http\Response
      */
-    public function show(Date $date)
+    public function show(Player $player)
     {
         //
     }
@@ -54,39 +62,33 @@ class DateController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Date  $date
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param  \App\Player  $player
+     * @return \Illuminate\Http\Response
      */
-    public function edit(Date $date)
+    public function edit(Player $player)
     {
-        return view('date.edit', compact('date'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Date  $date
+     * @param  \App\Player  $player
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Player $player)
     {
-        $date = Date::find($id);
-        $user = $date->user_id = $request->get('user_id');
-        $date->fill(array('user_id' => $user));
-        $date->save();
-//        dd($date);
-        return redirect('/home');
-
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Date  $date
+     * @param  \App\Player  $player
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Date $date)
+    public function destroy(Player $player)
     {
         //
     }

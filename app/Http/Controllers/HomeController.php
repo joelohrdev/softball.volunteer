@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Date;
+use App\Player;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $players = Player::get();
+        $dates = Date::where('user_id', Auth::user()->id)->get();
+        return view('home', compact('dates', 'players'));
     }
 }
