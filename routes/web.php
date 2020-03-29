@@ -27,3 +27,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('events', 'EventController@index');
 Route::get('events/create', 'EventController@create');
 Route::post('events/store', 'EventController@store');
+
+//Route::get('/dates/edit/{id}', 'DateController@edit');
+//Route::post('/dates/edit/{id}', 'DateController@update');
+
+Route::resource('/dates', 'DateController');

@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use App\Event;
 use Illuminate\Http\Request;
 
-class EventController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::with('dates')->get()->sortByDesc('dates.datetime');
-        return view('event.index', compact('events'));
+        //
     }
 
     /**
@@ -26,8 +24,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        $categories = Category::get();
-        return view('event.create', compact('categories'));
+        //
     }
 
     /**
@@ -38,23 +35,16 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        $event = new Event([
-            'category_id' => $request->get('category'),
-            'name' => $request->get('name')
-        ]);
-
-        $event->save();
-
-        return redirect('/home')->with('success', 'Event Saved');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Event  $event
+     * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show(Category $category)
     {
         //
     }
@@ -62,10 +52,10 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Event  $event
+     * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Event $event)
+    public function edit(Category $category)
     {
         //
     }
@@ -74,10 +64,10 @@ class EventController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Event  $event
+     * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request, Category $category)
     {
         //
     }
@@ -85,10 +75,10 @@ class EventController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Event  $event
+     * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
+    public function destroy(Category $category)
     {
         //
     }

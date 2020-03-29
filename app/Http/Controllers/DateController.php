@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Date;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Symfony\Component\Console\Input\Input;
 
 class DateController extends Controller
 {
@@ -24,7 +26,7 @@ class DateController extends Controller
      */
     public function create()
     {
-        //
+        return view('date.create');
     }
 
     /**
@@ -53,11 +55,11 @@ class DateController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Date  $date
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Date $date)
     {
-        //
+        return view('date.edit', compact('date'));
     }
 
     /**
@@ -67,9 +69,15 @@ class DateController extends Controller
      * @param  \App\Date  $date
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Date $date)
+    public function update(Request $request, $id)
     {
-        //
+        $date = Date::find($id);
+        $user = $date->user_id = $request->get('user_id');
+        $date->fill(array('user_id' => $user));
+        $date->save();
+//        dd($date);
+        return redirect('/events');
+
     }
 
     /**

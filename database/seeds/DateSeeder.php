@@ -11,6 +11,6 @@ class DateSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory('App\Date', 20)->create();
     }
 }

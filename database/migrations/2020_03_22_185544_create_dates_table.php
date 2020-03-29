@@ -16,7 +16,8 @@ class CreateDatesTable extends Migration
         Schema::create('dates', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('event_id');
-            $table->dateTime('date');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->dateTime('datetime');
             $table->timestamps();
         });
     }

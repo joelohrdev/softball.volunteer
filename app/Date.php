@@ -7,11 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Date extends Model
 {
     protected $fillable = [
-        'date'
+        'user_id',
+        'datetime'
+    ];
+
+    protected $dates = [
+        'datetime'
     ];
 
     public function event()
     {
-        return $this->hasOne(Event::class);
+        return $this->belongsTo(Event::class);
     }
 }
